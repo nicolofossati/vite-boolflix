@@ -1,7 +1,44 @@
 <template>
-    header
+    <div class="main-container">
+        <div class="main-content">
+            <span>BOOLFLIX</span>
+            <div class="search-bar">
+                <input type="text" v-model="store.searchText">
+                <button @click="$emit('performSearch')">Search</button>
+            </div>
+        </div>
+    </div>
 </template>
 
-<script></script>
+<script>
+import { store } from '../store.js';
 
-<style scoped lang="scss"></style>
+export default {
+    data() {
+        return {
+            store
+        }
+    }
+}
+</script>
+
+<style scoped lang="scss">
+.main-container {
+    background-color: black;
+
+    .main-content {
+        height: 50px;
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    span {
+        color: white;
+    }
+}
+
+.search-bar {}
+</style>
