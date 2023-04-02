@@ -1,15 +1,15 @@
 <template>
+    <h1 v-if="store.movies.length > 0">Movies</h1>
     <div class="movieCard-wrapper" v-for="movie in store.movies">
         <AppCardMovie :title="movie.title" :original_title="movie.original_title"
             :original_language="movie.original_language" :vote_average="movie.vote_average" />
     </div>
 
-    <!--
-    <div class="movieCard-wrapper" v-for="movie in store.movies">
-        <AppCardSerie :name="movie.name" :original_name="movie.original_name" :original_language="movie.original_language"
-            :vote_average="movie.vote_average" />
+    <h1 v-if="store.series.length > 0">Series</h1>
+    <div class="serieCard-wrapper" v-for="serie in store.series">
+        <AppCardSerie :name="serie.name" :original_name="serie.original_name" :original_language="serie.original_language"
+            :vote_average="serie.vote_average" />
     </div>
-    -->
 </template>
 
 <script>
