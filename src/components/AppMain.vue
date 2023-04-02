@@ -2,7 +2,8 @@
     <h1 v-if="store.movies.length > 0">Movies</h1>
     <div class="movieCard-wrapper" v-for="movie in store.movies">
         <AppCardMovie :title="movie.title" :original_title="movie.original_title"
-            :original_language="movie.original_language" :vote_average="movie.vote_average" />
+            :original_language="movie.original_language" :vote_average="movie.vote_average" :poster_path="
+                store.imgPrefix + movie.poster_path" />
     </div>
 
     <h1 v-if="store.series.length > 0">Series</h1>
