@@ -10,7 +10,7 @@
 
             <h1 v-if="store.series.length > 0">Series</h1>
             <div class="serieCard-wrapper">
-                <AppCard :name="serie.name" :original_name="serie.original_name"
+                <AppCard :title="serie.name" :original_title="serie.original_name"
                     :original_language="serie.original_language" :vote_average="serie.vote_average" :poster_path="
                         store.imgPrefix + serie.poster_path" v-for="serie in store.series" />
             </div>

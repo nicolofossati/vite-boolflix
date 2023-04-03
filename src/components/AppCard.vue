@@ -1,7 +1,7 @@
 <template>
     <div class="card">
-        <img class="movie-poster" :src="poster_path" v-if="show" @mouseover="show = false" @mouseleave="show = true">
-        <div class="movie-info" v-else>
+        <img class="movie-poster" :src="poster_path">
+        <div class="movie-info">
             <h1>{{ title }}</h1>
             <h2>{{ original_title }}</h2>
             <img class="flag" v-if="store.flags[0].flagList.includes(original_language)" :src="flag(original_language)">
@@ -23,8 +23,7 @@ import { store } from '../store.js';
 export default {
     data() {
         return {
-            store,
-            show: true
+            store
         }
     },
     props: {
@@ -63,7 +62,9 @@ export default {
     border: 1px solid black;
     display: flex;
 
-    .movie-info {}
+    .movie-info {
+        display: none;
+    }
 
     .movie-poster {
         width: 100%;
@@ -73,6 +74,16 @@ export default {
     .flag {
         width: 100px;
         height: 65px;
+    }
+}
+
+.card:hover {
+    .movie-info {
+        display: block;
+    }
+
+    .movie-poster {
+        display: none;
     }
 }
 </style>
