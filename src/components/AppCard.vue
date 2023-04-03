@@ -1,17 +1,29 @@
 <template>
     <div class="card">
-        <img class="movie-poster" :src="poster_path">
+        <img class="movie-poster" v-if="(poster_path != null)" :src="imgPrefix + poster_path">
+        <div class="without-poster" v-else>
+            <i class="fa-solid fa-images"></i>
+        </div>
         <div class="movie-info">
-            <h1>{{ title }}</h1>
-            <h2>{{ original_title }}</h2>
-            <img class="flag" v-if="store.flags[0].flagList.includes(original_language)" :src="flag(original_language)">
-            <h3 v-else>{{ original_language }}</h3>
+
+            <span class="title">Title: {{ title }}</span>
+            <span class="original-title">Original title : {{ original_title }}</span>
+
             <div class="star-vote">
-                <span v-for="n in 5">
+                <span>Vote: </span>
+                <span class="stars" v-for="n in 5">
                     <i class="fa-solid fa-star" v-if="n <= Math.ceil(vote_average / 2)"></i>
                     <i class="fa-regular fa-star" v-else></i>
                 </span>
             </div>
+
+            <div class="vote">
+                <span>Language: </span>
+                <img class="flag" v-if="store.flags[0].flagList.includes(original_language)" :src="flag(original_language)">
+                <h3 v-else>{{ original_language }}</h3>
+            </div>
+
+            <span class="overview">Overview: {{ overview }}</span>
         </div>
     </div>
 </template>
@@ -23,7 +35,8 @@ import { store } from '../store.js';
 export default {
     data() {
         return {
-            store
+            store,
+            imgPrefix: "https://image.tmdb.org/t/p/w342",
         }
     },
     props: {
@@ -32,7 +45,7 @@ export default {
         original_language: String,
         vote_average: String,
         poster_path: String,
-        index: Number
+        overview: String
 
     }, methods: {
         flag(language) {
@@ -56,14 +69,30 @@ export default {
 <style lang="scss" scoped>
 .card {
     width: calc(100%/4 - 40px);
+    aspect-ratio: 1 / 1.5;
     margin: 10px 20px;
-    text-align: center;
-    background-color: aliceblue;
-    border: 1px solid black;
+    background-color: rgb(40, 40, 40);
     display: flex;
+    color: white;
 
     .movie-info {
         display: none;
+        padding: 20px 10px;
+        overflow-y: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &>* {
+            display: block;
+            padding-bottom: 10px;
+        }
+
+        .title,
+        .original-title {
+            display: block;
+        }
     }
 
     .movie-poster {
@@ -71,19 +100,41 @@ export default {
 
     }
 
+    .without-poster {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        i {
+            color: white;
+            font-size: 100px;
+        }
+    }
+
     .flag {
-        width: 100px;
-        height: 65px;
+        width: 30px;
     }
 }
 
 .card:hover {
+
+    & {
+        border: 1px solid rgb(255, 255, 255);
+    }
+
     .movie-info {
         display: block;
     }
 
-    .movie-poster {
+    .movie-poster,
+    .without-poster {
         display: none;
     }
+}
+
+.stars {
+    color: #ffbd00;
 }
 </style>
