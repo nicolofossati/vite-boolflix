@@ -1,6 +1,6 @@
 <template>
-    <div class="main-container">
-        <div class="main-content">
+    <div class="header-container">
+        <div class="header-content">
             <span>BOOLFLIX</span>
             <div class="search-bar">
                 <input type="text" v-model="store.searchText">
@@ -23,10 +23,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.main-container {
+.header-container {
     background-color: black;
 
-    .main-content {
+    .header-content {
         height: 50px;
         width: 90%;
         margin: auto;
