@@ -1,6 +1,6 @@
 <template>
     <div class="card">
-        <img class="movie-poster" v-if="(poster_path != null)" :src="imgPrefix + poster_path">
+        <img class="movie-poster" v-if="(poster_path != null)" :src="`https://image.tmdb.org/t/p/w342${poster_path}`">
         <div class="without-poster" v-else>
             <i class="fa-solid fa-images"></i>
         </div>
@@ -24,6 +24,8 @@
                 <h3 v-else>{{ original_language }}</h3>
             </div>
 
+            <p v-for="actor in cast_list">{{ actor.name }}</p>
+
             <span class="overview">Overview: {{ overview }}</span>
         </div>
     </div>
@@ -36,8 +38,7 @@ import { store } from '../store.js';
 export default {
     data() {
         return {
-            store,
-            imgPrefix: "https://image.tmdb.org/t/p/w342",
+            store
         }
     },
     props: {
@@ -46,24 +47,12 @@ export default {
         original_language: String,
         vote_average: String,
         poster_path: String,
-        overview: String
+        overview: String,
+        cast_list: Array
 
     }, methods: {
         getImageUrl(path) {
-            return new URL(path, import.meta.url).href
-        },
-        flag(language) {
-            let flag = "";
-            if (language == 'it') {
-                flag = store.flags[0].it;
-            } else if (language == 'en') {
-                flag = store.flags[0].en;
-            } else if (language == 'es') {
-                flag = store.flags[0].es;
-            } else if (language == 'ja') {
-                flag = store.flags[0].ja; //
-            }
-            return flag;
+            return new URL(path, import.meta.url).href;
         }
     }
 }

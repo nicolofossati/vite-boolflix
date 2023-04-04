@@ -15,8 +15,11 @@
                 </ul>
             </div>
             <div class="search-bar">
-                <input type="text" v-model="store.searchText" @keyup.enter="$emit('performSearch')">
-                <button @click="$emit('performSearch')">Search</button>
+                <button @click="$emit('performSearch')" class="search-button">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <input class="search-input" placeholder="Search" type="text" v-model="store.searchText"
+                    @keyup.enter="$emit('performSearch')">
             </div>
         </div>
     </div>
@@ -74,5 +77,11 @@ export default {
     }
 }
 
-.search-bar {}
+.search-button,
+.search-input {
+    border: none;
+    padding-right: 10px;
+    background-color: #1b1b1b;
+    color: white;
+}
 </style>

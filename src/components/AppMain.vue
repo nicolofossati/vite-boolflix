@@ -5,9 +5,10 @@
             <div class="movieCard-wrapper">
                 <AppCard :title="movie.title" :original_title="movie.original_title"
                     :original_language="movie.original_language" :vote_average="movie.vote_average" :poster_path="
-                        movie.poster_path" :overview="movie.overview" v-for="(movie, index) in store.movies" />
+                        movie.poster_path" :overview="movie.overview" :cast_list="movie.currentCast"
+                    v-for="movie in store.movies" />
             </div>
-
+            <!-- callToApiCast(movie.id) -->
             <h1 class="serie-h1" v-if="store.series.length > 0">Series</h1>
             <div class="serieCard-wrapper">
                 <AppCard :title="serie.name" :original_title="serie.original_name"
@@ -20,17 +21,21 @@
 
 <script>
 import { store } from '../store.js';
+import axios from 'axios';
 
 import AppCard from './AppCard.vue';
 
 export default {
     data() {
         return {
-            store
+            store,
         }
+
     },
     components: {
         AppCard
+    },
+    methods: {
     }
 }
 </script>
