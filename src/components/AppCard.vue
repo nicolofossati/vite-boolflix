@@ -19,7 +19,8 @@
 
             <div class="vote">
                 <span>Language: </span>
-                <img class="flag" v-if="store.flags[0].flagList.includes(original_language)" :src="flag(original_language)">
+                <img class="flag" v-if="store.flagList.includes(original_language)"
+                    :src="getImageUrl(`../img/${original_language}.png`)">
                 <h3 v-else>{{ original_language }}</h3>
             </div>
 
@@ -48,6 +49,9 @@ export default {
         overview: String
 
     }, methods: {
+        getImageUrl(path) {
+            return new URL(path, import.meta.url).href
+        },
         flag(language) {
             let flag = "";
             if (language == 'it') {
