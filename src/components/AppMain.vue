@@ -5,7 +5,7 @@
             <div class="movieCard-wrapper">
                 <AppCard :title="movie.title" :original_title="movie.original_title"
                     :original_language="movie.original_language" :vote_average="movie.vote_average" :poster_path="
-                        movie.poster_path" :overview="movie.overview" :cast_list="movie.currentCast"
+                        movie.poster_path" :overview="movie.overview" :cast_list="movie.cast" :genres="movie.genre_ids"
                     v-for="movie in store.movies" />
             </div>
             <!-- callToApiCast(movie.id) -->

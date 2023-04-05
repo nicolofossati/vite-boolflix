@@ -3,6 +3,7 @@ export const store = reactive({
     searchText: "",
     movies: [],
     series: [],
-    currentCast: [],
+    genreMovieList: [],
+    genreSerieList: [],
     flagList: ['it', 'en', 'es', 'ja']
 }); 

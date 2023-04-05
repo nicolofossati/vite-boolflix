@@ -31,6 +31,13 @@
                 </ul>
             </div>
 
+            <div class="genre">
+                <Span>Genre:</Span>
+                <ul>
+                    <li v-for="(genre, index) in genres" :key="index">{{ getGenreName(genre) }}</li>
+                </ul>
+            </div>
+
             <span class="overview">Overview: {{ overview }}</span>
         </div>
     </div>
@@ -53,11 +60,20 @@ export default {
         vote_average: String,
         poster_path: String,
         overview: String,
-        cast_list: Array
+        cast_list: Array,
+        genres: Array
 
     }, methods: {
         getImageUrl(path) {
             return new URL(path, import.meta.url).href;
+        },
+        getGenreName(genre_id) {
+            for (let i = 0; i < store.genreMovieList.length; i++) {
+                if (store.genreMovieList[i].id == genre_id) {
+                    return store.genreMovieList[i].name;
+                }
+            }
+            return "Genre_Not_Found";
         }
     }
 }
@@ -136,7 +152,8 @@ export default {
     color: #ffbd00;
 }
 
-.cast {
+.cast,
+.genre {
     padding: 10px 0;
 
     ul {

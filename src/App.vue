@@ -31,7 +31,7 @@ export default {
           for (let i = 0; i < store.movies.length; i++) {
             axios.get(`https://api.themoviedb.org/3/movie/${store.movies[i].id}/credits?api_key=9a1a3a5b6cd69e0236098223b802cbfb`)
               .then(response => {
-                store.movies[i].currentCast = response.data.cast;
+                store.movies[i].cast = response.data.cast;
               });
           }
           console.log(store.movies)
@@ -48,6 +48,20 @@ export default {
     translate_input_to_query(input) {
       return input.trim().replace(' ', '+');
     }
+  },
+  created() {
+    //genre movie list
+    axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=9a1a3a5b6cd69e0236098223b802cbfb')
+      .then(response => {
+        store.genreMovieList = response.data.genres;
+        console.log(store.genreMovieList);
+      });
+
+    axios.get('https://api.themoviedb.org/3/genre/tv/list?api_key=9a1a3a5b6cd69e0236098223b802cbfb')
+      .then(response => {
+        store.genreSerieList = response.data.genres;
+        console.log(store.genreSerieList);
+      });
   }
 }
 
