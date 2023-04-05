@@ -13,7 +13,8 @@
             <div class="serieCard-wrapper">
                 <AppCard :title="serie.name" :original_title="serie.original_name"
                     :original_language="serie.original_language" :vote_average="serie.vote_average" :poster_path="
-                        serie.poster_path" :overview="serie.overview" v-for="serie in store.series" />
+                        serie.poster_path" :overview="serie.overview" :cast_list="serie.cast" :genres="serie.genre_ids"
+                    v-for="serie in store.series" />
             </div>
         </div>
     </div>

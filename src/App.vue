@@ -41,8 +41,14 @@ export default {
       let serieUrl = `https://api.themoviedb.org/3/search/tv?api_key=9a1a3a5b6cd69e0236098223b802cbfb&query=${query}`;
       axios.get(serieUrl)
         .then(response => {
-          this.store.series = response.data.results;
-          console.log(this.store.series);
+          store.series = response.data.results;
+          for (let i = 0; i < store.series.length; i++) {
+            axios.get(`https://api.themoviedb.org/3/tv/${store.series[i].id}/credits?api_key=9a1a3a5b6cd69e0236098223b802cbfb`)
+              .then(response => {
+                store.series[i].cast = response.data.cast;
+              });
+          }
+          console.log(store.series);
         });
     },
     translate_input_to_query(input) {
