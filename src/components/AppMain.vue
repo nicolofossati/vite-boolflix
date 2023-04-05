@@ -3,7 +3,7 @@
         <div class="main-content">
             <h1 class="movie-h1" v-if="store.movies.length > 0">Movies</h1>
             <div class="movieCard-wrapper">
-                <AppCard :title="movie.title" :original_title="movie.original_title"
+                <AppCard :typeCard="'movie'" :title="movie.title" :original_title="movie.original_title"
                     :original_language="movie.original_language" :vote_average="movie.vote_average" :poster_path="
                         movie.poster_path" :overview="movie.overview" :cast_list="movie.cast" :genres="movie.genre_ids"
                     v-for="movie in store.movies" />
@@ -11,7 +11,7 @@
             <!-- callToApiCast(movie.id) -->
             <h1 class="serie-h1" v-if="store.series.length > 0">Series</h1>
             <div class="serieCard-wrapper">
-                <AppCard :title="serie.name" :original_title="serie.original_name"
+                <AppCard :typeCard="'serie'" :title="serie.name" :original_title="serie.original_name"
                     :original_language="serie.original_language" :vote_average="serie.vote_average" :poster_path="
                         serie.poster_path" :overview="serie.overview" :cast_list="serie.cast" :genres="serie.genre_ids"
                     v-for="serie in store.series" />

@@ -34,7 +34,10 @@
             <div class="genre">
                 <Span>Genre:</Span>
                 <ul>
-                    <li v-for="(genre, index) in genres" :key="index">{{ getGenreName(genre) }}</li>
+                    <li v-for="(genre, index) in genres" :key="index">
+                        <span v-if="typeCard == 'movie'">{{ getGenreName(genre, store.genreMovieList) }}</span>
+                        <span v-else>{{ getGenreName(genre, store.genreSerieList) }}</span>
+                    </li>
                 </ul>
             </div>
 
@@ -54,6 +57,7 @@ export default {
         }
     },
     props: {
+        typeCard: String,
         title: String,
         original_title: String,
         original_language: String,
@@ -67,10 +71,10 @@ export default {
         getImageUrl(path) {
             return new URL(path, import.meta.url).href;
         },
-        getGenreName(genre_id) {
-            for (let i = 0; i < store.genreMovieList.length; i++) {
-                if (store.genreMovieList[i].id == genre_id) {
-                    return store.genreMovieList[i].name;
+        getGenreName(genre_id, genreList) {
+            for (let i = 0; i < genreList.length; i++) {
+                if (genreList[i].id == genre_id) {
+                    return genreList[i].name;
                 }
             }
             return "Genre_Not_Found";
