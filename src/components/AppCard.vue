@@ -11,7 +11,7 @@
 
             <div class="star-vote">
                 <span>Vote: </span>
-                <span class="stars" v-for="n in 5">
+                <span class="stars" v-for="n in 5" :key="n">
                     <i class="fa-solid fa-star" v-if="n <= Math.ceil(vote_average / 2)"></i>
                     <i class="fa-regular fa-star" v-else></i>
                 </span>
@@ -24,7 +24,12 @@
                 <h3 v-else>{{ original_language }}</h3>
             </div>
 
-            <p v-for="actor in cast_list">{{ actor.name }}</p>
+            <div class="cast">
+                <span>Cast: </span>
+                <ul>
+                    <li v-for="(actor, index) in cast_list" :key="index" v-show="index <= 4">{{ actor.name }}</li>
+                </ul>
+            </div>
 
             <span class="overview">Overview: {{ overview }}</span>
         </div>
@@ -129,5 +134,15 @@ export default {
 
 .stars {
     color: #ffbd00;
+}
+
+.cast {
+    padding: 10px 0;
+
+    ul {
+        padding-left: 15px;
+        list-style-type: circle;
+        color: white;
+    }
 }
 </style>

@@ -27,14 +27,14 @@ export default {
       let movieUrl = `https://api.themoviedb.org/3/search/movie?api_key=9a1a3a5b6cd69e0236098223b802cbfb&query=${query}`;
       axios.get(movieUrl)
         .then(response => {
-          this.store.movies = response.data.results;
-          store.movies.currentCast = [];
+          store.movies = response.data.results;
           for (let i = 0; i < store.movies.length; i++) {
             axios.get(`https://api.themoviedb.org/3/movie/${store.movies[i].id}/credits?api_key=9a1a3a5b6cd69e0236098223b802cbfb`)
               .then(response => {
-                store.movies.currentCast[i] = response.data.cast;
+                store.movies[i].currentCast = response.data.cast;
               });
           }
+          console.log(store.movies)
         });
 
 
